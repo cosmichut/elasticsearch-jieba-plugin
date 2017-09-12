@@ -2,6 +2,8 @@ package org.elasticsearch.index.analysis;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -18,6 +20,12 @@ public class JiebaAdapter implements Iterator<SegToken> {
   private Iterator<SegToken> tokens;
 
   private String raw = null;
+
+  //use a special comparator to order by startoffset asc and length(then endOffset) desc
+  //which can fix a bug cause highlight
+  private static final Comparator<SegToken> ComparatorSegToken = (s1, s2) -> {
+    return (s1.startOffset != s2.startOffset)?(s1.startOffset-s2.startOffset):(s2.endOffset-s1.endOffset);
+  };
 
   public JiebaAdapter(String segModeName) {
 
@@ -45,6 +53,8 @@ public class JiebaAdapter implements Iterator<SegToken> {
     }
 
     List<SegToken> list = jiebaTagger.process(raw, segMode);
+    //compare by startoffset asc and endoffset desc
+    Collections.sort(list,ComparatorSegToken);
     tokens = list.iterator();
   }
 
