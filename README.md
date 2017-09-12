@@ -1,23 +1,21 @@
 # elasticsearch-jieba-plugin
-jieba analysis plugin for elasticsearch: ***5.4.0***, ***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
+jieba analysis plugin for elasticsearch: ***5.4.2***, ***5.4.0***,***5.3.0***, ***5.2.2***, ***5.2.1***, ***5.2.0***, ***5.1.2***, ***5.1.1***
 
+###因由及主要变更
+原版本中有两个严重bug： 
+- ES中的分词在做highlight的时候，文字出现重叠。
+- ES在打开offset模式进行索引时，会报错误
+```shell
+reason=startOffset must be non-negative, and endOffset must be >= startOffset, and offsets must not go backwards
+```
+由于这个错误在所有的分支中都存在，且每个分支的差别仅在于版本号配置，所以我删除了所有的分支tag。
 
-### 版本对应
+### 插件(by version)直接下载
+***In todo list.***
 
-| 分支      | tag        | elasticsearch版本 | Release Link                                                                                  |
-| ---       | ---        | ---               | ---                                                                                           |
-| 5.4.0     | tag v5.4.0 | v5.4.0            | Download: [v5.4.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.4.0) |
-| 5.3.0     | tag v5.3.0 | v5.3.0            | Download: [v5.3.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.3.0) |
-| 5.2.2     | tag v5.2.2 | v5.2.2            | Download: [v5.2.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.2.2) |
-| 5.2.1     | tag v5.2.1 | v5.2.1            | Download: [v5.2.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.2.1) |
-| 5.2       | tag v5.2.0 | v5.2.0            | Download: [v5.2.0](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.2.0) |
-| 5.1.2     | tag v5.1.2 | v5.1.2            | Download: [v5.1.2](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.2) |
-| 5.1.1     | tag v5.1.1 | v5.1.1            | Download: [v5.1.1](https://github.com/sing1ee/elasticsearch-jieba-plugin/releases/tag/v5.1.1) |
-
-
-
-### more details
-- choose right version source code.
+### more detail
+- download the souce from master
+- change version and elasticsearch version  as your es version in file ***build.gradle*** and ***main/resouces/plugin-descriptor.properties***
 - run
 
 ```shell
@@ -26,7 +24,7 @@ gradle pz
 - copy the zip file to plugin directory
 
 ```shell
-cp build/distributions/elasticsearch-jieba-plugin-5.1.2.zip ${path.home}/plugins
+cp build/distributions/elasticsearch-jieba-plugin-5.3.0.zip ${path.home}/plugins
 ```
 - unzip and rm zip file
 
@@ -359,9 +357,9 @@ Query:
 migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
 
 ### Roadmap
-I will add more analyzer support:
-- stanford chinese analyzer
-- fudan nlp analyzer
+I will add more for current branch support:
+- support dynamic version as parameter to build and package.
+- rebuild every downloadable package.
 - ...
 
 If you have some ideas, you should create an issue. Then, we will do it together.
