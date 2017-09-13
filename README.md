@@ -29,8 +29,8 @@ cp build/distributions/elasticsearch-jieba-plugin-5.3.0.zip ${path.home}/plugins
 - unzip and rm zip file
 
 ```shell
-unzip elasticsearch-jieba-plugin-5.1.2.zip
-rm elasticsearch-jieba-plugin-5.1.2.zip
+unzip elasticsearch-jieba-plugin-5.3.0.zip
+rm elasticsearch-jieba-plugin-5.3.0.zip
 ```
 - start elasticsearch
 
@@ -360,6 +360,6 @@ migrate from [jieba-solr](https://github.com/sing1ee/jieba-solr)
 I will add more for current branch support:
 - support dynamic version as parameter to build and package.
 - rebuild every downloadable package.
-- ...
+- if energe permits, enhance jieba java segmentor as well.
 
 If you have some ideas, you should create an issue. Then, we will do it together.
